@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    image: 
+    environment:
+      POSTGRES_DB: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 793179
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      FLASK_ENV: 
+      DATABASE_URL: 
+    volumes:
+      - .:/main
+
+volumes:
+  postgres_data:
